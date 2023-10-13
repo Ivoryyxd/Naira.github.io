@@ -1,0 +1,11 @@
+.bg-image {
+    background-image: url("background_web_gombalan.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+  }
+  
+  .btn-shadow {
+    box-shadow: #fdfdfd 0 23px 50px, #dfdfd0 0 7px 15px, #c1acac 0 3px 5px,
+      #0e0d0d 0 3px 85px;
+  }

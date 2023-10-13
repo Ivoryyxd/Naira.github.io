@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+    <title>Jaya &#10084;&#65039;</title>
+  </head>
+
+  <body class="bg-image">
+    <div class="position-absolute top-50 start-50 translate-middle">
+      <button id="button" class="btn btn-dark btn-lg btn-shadow" onclick="mulai()">
+        Pencet disini!
+      </button>
+      <!-- Muncul ketika icon hati di klik -->
+      <div id="iloveyou" style="display: none">
+        <h2 class="text-center">Aku sayang kamu! mwahhhh<br />&#10084;&#65039;</h2>
+      </div>
+    </div>
+
+    <!-- Footer hati yang bisa di klik -->
+    <span
+      id="hati"
+      class="fixed-bottom text-center my-3"
+      onclick="hati()"
+    ></span>
+
+    <!-- untuk buat alert pake sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+    <script type="text/javascript">
+      //Buat footer
+      const author = "Jaya";
+      const emot_hati = "&#10084;&#65039;";
+      document.getElementById(
+        "hati"
+      ).innerHTML = `Made with ${emot_hati} by ${author}`;
+
+      //Nentuin warna button ok & cancel
+      const swals = Swal.mixin({
+        cancelButtonColor: "#DC143C",
+        confirmButtonColor: "#1E90FF",
+      });
+
+      //Buat alert pembuka
+      async function mulai() {
+        await swals.fire("Hallo Cantik", "Aku ada pertanyaan nih buat kamu");
+        await swals.fire("Jawab yang jujur ya!");
+        await swals.fire("Awas aja kalo boong!!", "", "error");
+        var { value: nama } = await swals.fire({
+          title: "Masukin dulu nama mu yang manis itu",
+          input: "text",
+          showCancelButton: false,
+        });
+
+        //Buat alert opsional
+        if (nama) {
+          var { isConfirmed: sayang } = await swals.fire({
+            title: `${nama} sayang ga sama ${author}?`,
+            confirmButtonText: "Sayang",
+            cancelButtonText: "Gak",
+            showCancelButton: true,
+          });
+          //Buat alert range 1-100
+          if (sayang) {
+            await swals.fire("Aku juga sayang kok sama kamuu    :))");
+            var { value: persen } = await swals.fire({
+              title: "Seberapa sayang emangnya?",
+              icon: "question",
+              input: "range",
+              inputLabel: "Antara 1-100 yaa",
+              inputAttributes: {
+                min: 1,
+                max: 100,
+              },
+              inputValue: 50, //agar awal range mulai dari value 50
+            });
+            if (persen) {
+              await swals.fire(
+                `Makasih ya udah sayang sama ${author} ${persen}%`
+              );
+              //Buat alert kangen
+              var { isConfirmed: kangen } = await swals.fire({
+                title: "Sekarang kamu kangen ga sama aku?",
+                confirmButtonText: "Kangen",
+                cancelButtonText: "Gak!",
+                showCancelButton: true,
+              });
+              if (kangen) {
+                await swals.fire("Samaa aku juga kangen sama kamuu");
+                await swals.fire("Terakhir deh Ayy");
+                await swals.fire("Coba klik ikon hati di paling bawah yaa");
+              } else {
+                //Buat alert gak kangen
+                await swals.fire("Hmmm jahat bgt :((");
+                await swals.fire("Padahal aku kangen lo sama kamu :((");
+                await swals.fire("Dahlah BYE!");
+              }
+            }
+          } else {
+            //Buat alert gak sayang
+            await swals.fire("Positive thinking mungkin belum kali yaaa");
+            await swals.fire("Tapi nanti kalo udh sayang bilang yaa :)");
+            await swals.fire("Udah segitu aja, byee...");
+          }
+        } else {
+          //Buat alert kalo gk isi nama
+          await swals.fire("Yahhh kok namanya gak di isi sih!");
+          await swals.fire("Ulang dari awal yaa, inget namanya diisi!");
+        }
+      }
+      //Buat fitur confetti ketika di klik emot jantung
+      function hati() {
+        document.getElementById("button").style = "display: none";
+        document.getElementById("iloveyou").style = "";
+        document.body.style.backgroundImage = "url('assets/background-confetti_web_gombalan.jpg')";
+        startConfetti(); 
+      }
+    </script>
+    <script
+      type="text/javascript"
+      src="https://www.cssscript.com/demo/confetti-falling-animation/confetti.js"
+    ></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
+  </body>
+</html>
